@@ -1,0 +1,72 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Funnel Sans", sans-serif;
+    background-color: black;
+    color: #afafaf;
+    font-weight: 600;
+    overflow-x: hidden;
+    max-width: 1900px;
+    margin: auto;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 17px;
+    line-height: 28px;
+    font-weight: 600;
+    padding: 50px 60px;
+    z-index: 100; /* Ensure it's above other elements */
+}
+
+.navbar ul {
+    list-style: none;
+    text-align: end;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #afafaf;
+}
+
+.logo-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+}
+
+.social-media {
+    padding: 50px 60px 10px 60px;
+    line-height: 70px;
+    left: 0;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
+
+.social-media ul {
+    list-style: none;
+}
+
+.social-media svg {
+    stroke: #afafaf;
+    fill: transparent;
+    width: 35px;
+    height: 35px;
+}
+
+.about {
+    display: flex;
+    flex-direction: column;
+}

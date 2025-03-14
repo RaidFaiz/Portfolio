@@ -1,0 +1,35 @@
+.header {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.name {
+    text-transform: uppercase;
+    letter-spacing: 25px;
+}
+
+h1 {
+    font-size: 7rem;
+    text-align: center;
+    text-transform: uppercase;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+h1 div {
+    display: block;
+    min-height: 50px;
+}
+
+.highlighted-h1 {
+    color: #5e17eb;
+}
+  
