@@ -26,7 +26,7 @@ body {
     line-height: 28px;
     font-weight: 600;
     padding: 50px 60px;
-    z-index: 100; /* Ensure it's above other elements */
+    z-index: 100;
 }
 
 .navbar ul {

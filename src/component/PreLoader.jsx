@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { preLoaderAnim } from "../animation";
 import "./preloader.css";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.svg";
 
 const Preloader = ({ onStart }) => {
   const [progress, setProgress] = useState(0);
