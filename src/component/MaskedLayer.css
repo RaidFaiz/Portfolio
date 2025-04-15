@@ -1,18 +1,6 @@
-.masked {
-    position: absolute;
-    mask-image: url('/mask.svg');
-    background: #5e17eb;
-    mask-repeat: no-repeat;
-    mask-size: 40px;
-    color: black;
-    z-index: 200;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: default;
+
+.masked-color {
+    mix-blend-mode: normal;
 }
 
 .name {
@@ -21,6 +9,11 @@
 
 .highlighted-h1 {
     color: #5e17eb;
+}
+
+.masked-header-container,
+.masked-about-container {
+  pointer-events: auto;
 }
 
 .masked-header-container {

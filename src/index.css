@@ -13,6 +13,26 @@ body {
     margin: auto;
 }
 
+.masked {
+    position: absolute;
+    mask-image: url('/mask.svg');
+    background: #5e17eb;
+    mask-repeat: no-repeat;
+    mask-size: 40px;
+    color: black;
+    z-index: 200;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+    mix-blend-mode: difference;
+    pointer-events: none;
+}
+
+
 .page-container {
     position: relative;
     width: 100%;
@@ -32,7 +52,8 @@ body {
     line-height: 28px;
     font-weight: 600;
     padding: 50px 60px;
-    z-index: 9999;
+    z-index: 999;
+    mix-blend-mode: difference;
 }
 
 .navbar ul {
@@ -58,7 +79,7 @@ body {
     bottom: 0;
     position: fixed;
     width: 100%;
-    z-index: 9999;
+    z-index: 999;
 }
 
 .social-media ul {
@@ -104,10 +125,12 @@ h1 {
 }
 
 .main-about, .masked-about {
+    height: 100vh;
     max-width: 1900px;
     text-transform: uppercase;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     margin: auto;
 }
 
