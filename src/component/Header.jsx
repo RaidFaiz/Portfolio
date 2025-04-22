@@ -4,14 +4,14 @@ import "./header.css";
 import HoverTrigger from "../animation/HoverTrigger";
 
 export default function Header({ setIsHovered }) {
-  const linesRef = useRef([]);
+  const linesRefs = useRef([]);
 
   useEffect(() => {
     const delayTime = 0.01; // Delay to ensure preloader fully fades out
 
-    gsap.set(linesRef.current, { opacity: 0, y: 100 });
+    gsap.set(linesRefs.current, { opacity: 0, y: 100 });
 
-    gsap.to(linesRef.current, {
+    gsap.to(linesRefs.current, {
       y: 0,
       opacity: 1,
       stagger: 0.2,
@@ -21,6 +21,10 @@ export default function Header({ setIsHovered }) {
     });
   }, []);
 
+  const setlinesRefs = (el, index) => {
+    if (el) linesRefs.current[index] = el;
+  };
+
   return (
     <div className="header">
       <div className="main-header">
@@ -28,7 +32,7 @@ export default function Header({ setIsHovered }) {
           <span className="name">rfr</span>
           <h1>
             {["Crafting", "the Extraordinary", "from", "the Ordinary"].map((text, index) => (
-              <div key={index} ref={(el) => (linesRef.current[index] = el)} className={index === 1 ? "highlighted-h1" : ""}>
+              <div key={index} ref={(el) => setlinesRefs(el, index)} className={index === 1 ? "highlighted-h1" : ""}>
                 {text}
               </div>
             ))}

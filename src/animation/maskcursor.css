@@ -1,0 +1,22 @@
+.mask-cursor {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 450px;
+    height: 450px;
+    z-index: 999;
+    mix-blend-mode: normal;
+    background-color: white;
+  
+    -webkit-mask-image: url('/public/mask.svg'); /* your mask image */
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: 40px;
+  
+    mask-image: url('/public/mask.svg');
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: 40px;
+  }
+  

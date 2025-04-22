@@ -1,3 +1,24 @@
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevennt] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+    pointer-events: none;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -14,13 +35,12 @@ body {
 }
 
 .masked {
-    position: absolute;
     mask-image: url('/mask.svg');
     background: #5e17eb;
     mask-repeat: no-repeat;
     mask-size: 40px;
     color: black;
-    z-index: 200;
+    z-index: 10;
     height: 100%;
     width: 100%;
     display: flex;
@@ -30,8 +50,16 @@ body {
     cursor: default;
     mix-blend-mode: difference;
     pointer-events: none;
+    position: absolute;
 }
 
+.masked * {
+    pointer-events: auto;
+}
+
+.size-hover {
+    width: inherit;
+}
 
 .page-container {
     position: relative;
@@ -51,17 +79,20 @@ body {
     font-size: 17px;
     line-height: 28px;
     font-weight: 600;
-    padding: 50px 60px;
-    z-index: 999;
+    padding: 50px 60px;  
     mix-blend-mode: difference;
+    pointer-events: auto;
+    z-index: 9999;
 }
 
 .navbar ul {
+    z-index: 9999;
     list-style: none;
     text-align: end;
 }
 
 .navbar ul li a {
+    z-index: 999;
     text-decoration: none;
     color: #afafaf;
 }

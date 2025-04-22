@@ -1,18 +1,31 @@
-import logo from "../assets/logo.svg"
+import Magnetic from "../animation/Magnetic"; // adjust path if needed
+import logo from "../assets/logo.svg";
 
 export default function Navbar() {
-    return (
-      <>
-        <div className="navbar">
-          <a href="#">
-            <img className='logo-img' src={logo} alt="logo" />
-          </a>
-          <ul>
-            <li><a href="https://www.w3schools.com">ABOUT</a></li>
-            <li><a href="">WORK</a></li>
-            <li><a href="">CONTACT</a></li>
-          </ul>
-        </div>    
-      </>
-    )
-  }
+  return (
+    <div className="navbar">
+      <Magnetic radius={100} strength={0.3}>
+        <a href="#">
+          <img className="logo-img" src={logo} alt="logo" />
+        </a>
+      </Magnetic>
+      <ul>
+        <li>
+          <Magnetic radius={100} strength={0.3}>
+            <a href="https://www.w3schools.com">ABOUT</a>
+          </Magnetic>
+        </li>
+        <li>
+          <Magnetic radius={100} strength={0.3}>
+            <a href="">WORK</a>
+          </Magnetic>
+        </li>
+        <li>
+          <Magnetic radius={100} strength={0.3}>
+            <a href="">CONTACT</a>
+          </Magnetic>
+        </li>
+      </ul>
+    </div>
+  );
+}
