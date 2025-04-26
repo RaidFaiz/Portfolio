@@ -1,5 +1,6 @@
 {
   "name": "portfolio-new",
+  "homepage": "https://raidfaiz.github.io/Portfolio/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,10 +8,13 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "pnpm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "framer-motion": "^12.5.0",
+    "gh-pages": "^6.3.0",
     "gsap": "^3.12.7",
     "lenis": "^1.2.3",
     "locomotive-scroll": "^4.1.4",
