@@ -26,6 +26,8 @@ export default function Header({ setIsHovered }) {
   };
 
   return (
+    <>
+    <div style={{ height: "80px" }}></div> {/* <- Same height as navbar */}
     <div className="header">
       <div className="main-header">
         <HoverTrigger setIsHovered={setIsHovered}>
@@ -41,6 +43,7 @@ export default function Header({ setIsHovered }) {
         </HoverTrigger> 
       </div>      
     </div>
+    </>
   );
 }
 

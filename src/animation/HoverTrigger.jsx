@@ -1,4 +1,4 @@
-export default function HoverTrigger({children, setIsHovered}) {
+export default function HoverTrigger({children, setIsHovered  = () => {}}) {
     return (
       <div
       className="size-hover"

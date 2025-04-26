@@ -24,13 +24,15 @@ function App() {
       {!isLoaded && <Preloader onStart={() => setIsLoaded(true)} />}
       {isLoaded && (
         <div className="page-container">
-          <MaskedLayer />
+          
           <div className="main">
             <Navbar />
             <SocialMedia />
             <Header />
             <About />
           </div>
+
+          <MaskedLayer />
         </div>
       )}
     </>
