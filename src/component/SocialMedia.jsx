@@ -7,23 +7,23 @@ export default function SocialMedia() {
         <div className="social-media">
           <ul>
             <li>
-            <Magnetic radius={100} strength={0.3}>
+            <Magnetic radius={50} strength={0.3}>
               <a href=""><Icons.LinkedinLogo/></a>
             </Magnetic>
             </li>
             <li>
-              <Magnetic radius={100} strength={0.3}>
+              <Magnetic radius={50} strength={0.3}>
                 <a href=""><Icons.InstagramLogo/></a>
               </Magnetic>
             </li>
             <li>
-              <Magnetic radius={100} strength={0.3}>
+              <Magnetic radius={50} strength={0.3}>
                 <a href=""><Icons.DribbbleLogo/></a>
               </Magnetic>
             </li>
             <li>
-              <Magnetic radius={100} strength={0.3}>
-                <a href=""><Icons.FacebookLogo/></a>
+              <Magnetic radius={50} strength={0.3}>
+                <a href=""><Icons.TwitterLogo/></a>
               </Magnetic>
             </li>
           </ul>

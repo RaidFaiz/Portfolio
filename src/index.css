@@ -114,6 +114,7 @@ body {
     position: fixed;
     width: 100%;
     z-index: 999;
+    mix-blend-mode: difference;
 }
 
 .social-media ul {
@@ -171,10 +172,28 @@ h1 {
     width: 1150px;
 }
 
+.about-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
 .about-desc {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 50px;
+}
+
+.main-about .about-desc {
+    mix-blend-mode: difference; 
+}
+
+.masked-about .about-desc {
+    mix-blend-mode: hue;
 }
 
 .main-about p,.masked-about p {
@@ -182,10 +201,19 @@ h1 {
     font-size: 3rem;
 }
 
+.masked-about .about-desc-span {
+    color: black;
+}
+
+.masked-about #about-subtitle svg, #about-subtitle {
+    mix-blend-mode: hue;
+    stroke: black;
+}
+
 .about-desc-span {
     margin: 3rem;
     color: #5e17eb;
-    mix-blend-mode:screen;
+    mix-blend-mode: difference;
 }
 
 .line-container {
@@ -237,6 +265,26 @@ h1 {
     text-indent: 9rem;
 }
 
+#about-subtitle {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.profile {
+    mix-blend-mode: difference;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    height: auto;
+    z-index: -1;
+}
+
+.profile img {
+    width: 400px;
+    height: auto;
+}
+
 @media (max-width: 1700px) {
     .masked-about, .main-about {
         width: 1000px;
@@ -252,6 +300,10 @@ h1 {
 
     .about-desc {
         gap: 45px;
+    }
+
+    .profile img {
+        width: 315px;
     }
 }
 
@@ -287,6 +339,10 @@ h1 {
     #second-paragraph {
         text-indent: 5rem;
     }
+
+    .profile img {
+        width: 265px;
+    }
 }
 
 @media (max-width: 970px) {
@@ -317,5 +373,9 @@ h1 {
 
     #second-paragraph {
         text-indent: 4rem;
+    }
+
+    .profile img {
+        width: 215px;
     }
 }

@@ -4,9 +4,13 @@ import { motion } from "framer-motion";
 import useMousePosition from "../animation/useMousePosition";
 import './MaskedLayer.css'
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HoverTrigger from "../animation/HoverTrigger";
 import SVGLineDrawing from '../animation/SVGLineDrawing';
 import SVGLineDrawingStraight from "../animation/SVGLineDrawingStraight";
+import profile from "/profile.jpg";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function MaskedLayer() {
   const [isHovered, setIsHovered] = useState(false);
@@ -17,6 +21,7 @@ export default function MaskedLayer() {
 
   
   const maskRefs = useRef([]);
+  const headerRef = useRef(null);
 
 useEffect(() => {
   const delayTime = 0.01;
@@ -29,7 +34,20 @@ useEffect(() => {
     ease: "power3.out",
     delay: delayTime,
   });
+
+  // --- Parallax effect ---
+    gsap.to(maskRefs.current, {
+      yPercent: (i) => (i % 2 === 0 ? 20 : 40), // even lines move slower than odd
+      ease: "none",
+      scrollTrigger: {
+        trigger: headerRef.current,
+        start: "top top",
+        end: "bottom top",
+        scrub: 1,
+      },
+    });
 }, []);
+
 
 const setMaskRef = (el, index) => {
   if (el) maskRefs.current[index] = el;
@@ -76,8 +94,7 @@ const setMaskRef = (el, index) => {
       }}
       transition={{ type: "tween", ease: "backOut" }}
     >
-      <div style={{ height: "80px" }}></div> {/* <- Same height as navbar */}
-      <div className="masked-header-container">
+      <div className="masked-header-container" ref={headerRef}>
         <HoverTrigger setIsHovered={(hovered) => setIsHovered(hovered)}>
           <span className="name">Raid Faiz Ridha</span>
           <h1>
@@ -91,23 +108,33 @@ const setMaskRef = (el, index) => {
       <div className="masked-about-container">
         <div className="masked-about">
           <HoverTrigger setIsHovered={(hovered) => setIsHovered(hovered)}  style={{ pointerEvents: 'auto' }}>
-          <div className="about-desc">            
-            <p id='first-paragraph'>            
-              CREATIVE FRONT-END DEVELOPER SHAPING MODERN WEB INTERFACES <span className='about-desc-span'>✦</span>
-              WITH A FOCUS
-              ON <SVGLineDrawingStraight svgPathStraight={svgPathStraight} /> <span className='about-desc-span' id="simplicity-text" >SIMPLICITY</span>, SPEED, AND USER
-              <br/>
-              EXPERIENCE.                       
-              <span className='line-main-container'>
-                <SVGLineDrawing svgPath={svgPath} />
-              </span>
-            </p>
-            <p id='second-paragraph'>
-              I BUILD INTERFACES THAT MERGE FUNCTION WITH <span className='about-desc-span'>AESTHETICS</span>
-              CRAFTING CLEAN, RESPONSIVE DESIGNS THAT FEEL <span className='about-desc-span'>NATURAL</span> TO USE.          
-            </p>
-      </div>
-          </HoverTrigger>  
+          <h2 id='about-subtitle'>   
+            ABOUT ME
+            {" "}
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="#5e17eb"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"  className="icon icon-tabler icons-tabler-outline icon-tabler-sparkles"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 18a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2zm0 -12a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2zm-7 12a6 6 0 0 1 6 -6a6 6 0 0 1 -6 -6a6 6 0 0 1 -6 6a6 6 0 0 1 6 6z" /></svg>
+          </h2>
+          <div className='about-container'>
+            <div className="profile">
+                <img src={profile} alt="profile" />
+            </div>
+            <div className="about-desc">
+              <p id='first-paragraph'>
+                CREATIVE FRONT-END DEVELOPER SHAPING MODERN WEB INTERFACES <span className='about-desc-span'>✦</span> 
+                WITH A FOCUS ON <SVGLineDrawingStraight svgPathStraight={svgPathStraight} /> <span className='about-desc-span' id="simplicity-text" >SIMPLICITY</span>, SPEED, AND USER
+                <br />
+                EXPERIENCE.
+                <span className='line-main-container'>
+                  <SVGLineDrawing svgPath={svgPath} />
+                </span>
+              </p>
+              <p id='second-paragraph'>
+                I BUILD INTERFACES THAT MERGE FUNCTION WITH <span className='about-desc-span'>AESTHETICS</span>
+                CRAFTING CLEAN, RESPONSIVE DESIGNS THAT FEEL <span className='about-desc-span'>NATURAL</span> TO USE.          
+              </p>
+            </div>
+          </div>
+          </HoverTrigger>
+  
         </div>
       </div>
     </motion.div>

@@ -6,7 +6,7 @@ export default function useMagneticEffect(ref, options = {}) {
   const [transform, setTransform] = useState({ x: 0, y: 0 });
 
   const {
-    radius = 100,
+    radius = 50,
     strength = 0.3,
   } = options;
 

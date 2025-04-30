@@ -24,7 +24,7 @@ const SVGLineDrawingStraight = ({ svgPathStraight }) => {
       scrollTrigger: {
         trigger: containerRef.current,
         start: 'top bottom',
-        end: 'bottom top+=500',
+        end: 'bottom top+=200',
         scrub: true,
       },
                               

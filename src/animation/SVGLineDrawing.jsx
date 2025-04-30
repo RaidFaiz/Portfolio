@@ -24,7 +24,7 @@ const SVGLineDrawing = ({ svgPath }) => {
       scrollTrigger: {
         trigger: containerRef.current,
         start: 'top bottom',
-        end: 'bottom top+=500',
+        end: 'bottom top+=350',
         scrub: true,
       },
                               
