@@ -18,23 +18,15 @@ const Preloader = ({ onStart }) => {
     const images = Array.from(document.images);
     let loaded = 0;
     const total = images.length;
-
+  
     const updateProgress = () => {
       loaded++;
       const newProgress = total > 0 ? (loaded / total) * 100 : 100;
       setProgress(newProgress);
-
-      if (loaded === total) {
-        setTimeout(() => {
-          setProgress(100);
-          setTimeout(() => setIsPageLoaded(true), 500);
-        }, 300);
-      }
     };
-
+  
     if (total === 0) {
       setProgress(100);
-      setTimeout(() => setIsPageLoaded(true), 500);
     } else {
       images.forEach((img) => {
         if (img.complete) {
@@ -45,7 +37,24 @@ const Preloader = ({ onStart }) => {
         }
       });
     }
+  
+    // Final check after ALL page assets (images, fonts, scripts, etc.) are loaded
+    const handleFullLoad = () => {
+      setProgress(100);
+      setTimeout(() => setIsPageLoaded(true), 500);
+    };
+  
+    if (document.readyState === "complete") {
+      handleFullLoad();
+    } else {
+      window.addEventListener("load", handleFullLoad);
+    }
+  
+    return () => {
+      window.removeEventListener("load", handleFullLoad);
+    };
   }, []);
+  
 
   useEffect(() => {
     if (isPageLoaded) {
