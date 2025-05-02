@@ -22,6 +22,7 @@ export default function MaskedLayer() {
   
   const maskRefs = useRef([]);
   const headerRef = useRef(null);
+  const bgRef = useRef(null);
 
   const profileRef = useRef(null);
 
@@ -56,9 +57,9 @@ useEffect(() => {
     delay: delayTime,
   });
 
-  // --- Parallax effect ---
+    // --- Parallax text ---
     gsap.to(maskRefs.current, {
-      yPercent: (i) => (i % 2 === 0 ? 20 : 40), // even lines move slower than odd
+      yPercent: 20,
       ease: "none",
       scrollTrigger: {
         trigger: headerRef.current,
@@ -67,8 +68,7 @@ useEffect(() => {
         scrub: 1,
       },
     });
-}, []);
-
+  }, []);
 
 const setMaskRef = (el, index) => {
   if (el) maskRefs.current[index] = el;

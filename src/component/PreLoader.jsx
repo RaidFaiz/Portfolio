@@ -16,17 +16,18 @@ const Preloader = ({ onStart }) => {
 
   useEffect(() => {
     const images = Array.from(document.images);
-    let loaded = 0;
-    const total = images.length;
+    const totalAssets = images.length + 1; // +1 for fonts
+    let loadedAssets = 0;
   
     const updateProgress = () => {
-      loaded++;
-      const newProgress = total > 0 ? (loaded / total) * 100 : 100;
+      loadedAssets++;
+      const newProgress = totalAssets > 0 ? (loadedAssets / totalAssets) * 100 : 100;
       setProgress(newProgress);
     };
   
-    if (total === 0) {
-      setProgress(100);
+    // Track image loading
+    if (images.length === 0) {
+      updateProgress();
     } else {
       images.forEach((img) => {
         if (img.complete) {
@@ -38,22 +39,30 @@ const Preloader = ({ onStart }) => {
       });
     }
   
-    // Final check after ALL page assets (images, fonts, scripts, etc.) are loaded
-    const handleFullLoad = () => {
+    // Track fonts (waits for all fonts to be ready)
+    document.fonts.ready.then(() => {
+      updateProgress();
+    });
+  
+    // Final trigger when everything is visually ready
+    const handleFinalRender = () => {
       setProgress(100);
-      setTimeout(() => setIsPageLoaded(true), 500);
+      requestAnimationFrame(() => {
+        setTimeout(() => setIsPageLoaded(true), 500);
+      });
     };
   
     if (document.readyState === "complete") {
-      handleFullLoad();
+      handleFinalRender();
     } else {
-      window.addEventListener("load", handleFullLoad);
+      window.addEventListener("load", handleFinalRender);
     }
   
     return () => {
-      window.removeEventListener("load", handleFullLoad);
+      window.removeEventListener("load", handleFinalRender);
     };
   }, []);
+  
   
 
   useEffect(() => {
