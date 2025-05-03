@@ -45,6 +45,9 @@ import { gsap } from 'gsap';
 import SVGLineDrawing from '../animation/SVGLineDrawing';
 import SVGLineDrawingStraight from '../animation/SVGLineDrawingStraight';
 import profile from '/profile.jpg';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
   const svgPath = "M295 5H981.804C994.615 5 1005 15.3852 1005 28.1959V28.1959C1005 41.0066 994.615 51.3918 981.804 51.3918H26.8042C14.7621 51.3918 5 61.1538 5 73.1959V73.1959C5 85.238 14.762 95 26.8041 95H96.5";
@@ -52,25 +55,24 @@ export default function About() {
 
   const profileRef = useRef(null);
 
-  // GSAP animation for the zoom parallax effect
+     // Scroll-trigger animation for profile image scale
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      
-      // Zoom effect for the profile image based on scroll
-      gsap.to(profileRef.current, {
-        scale: 0.3 + scrollY / 1000,
+    gsap.fromTo(profileRef.current, 
+      {
+        scale: 0.5,  // Initial small scale
+      },
+      {
+        scale: 1.3,    // Final scale when scrolled
         ease: "power1.out",
-      });
-    };
-
-    // Listen for scroll events
-    window.addEventListener("scroll", handleScroll);
-
-    // Cleanup on component unmount
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+        scrollTrigger: {
+          trigger: profileRef.current,
+          start: "top bottom", // Trigger when profile image enters the viewport
+          end: "bottom top",   // End when profile image leaves the viewport
+          scrub: true,         // Link to scroll position
+          markers: false,      // Optional: Set to true to visualize scrollTrigger points
+        }
+      }
+    );
   }, []);
 
   return (

@@ -22,33 +22,35 @@ export default function MaskedLayer() {
   
   const maskRefs = useRef([]);
   const headerRef = useRef(null);
-  const bgRef = useRef(null);
 
   const profileRef = useRef(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      
-      gsap.to(profileRef.current, {
-        scale: 0.3 + scrollY / 1000,
+    gsap.fromTo(profileRef.current, 
+      {
+        scale: 0.5,  // Initial small scale
+      },
+      {
+        scale: 1.3,    // Final scale when scrolled
         ease: "power1.out",
-      });
-    };
-
-    // Listen for scroll events
-    window.addEventListener("scroll", handleScroll);
-
-    // Cleanup on component unmount
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+        scrollTrigger: {
+          trigger: profileRef.current,
+          start: "top bottom", // Trigger when profile image enters the viewport
+          end: "bottom top",   // End when profile image leaves the viewport
+          scrub: true,         // Link to scroll position
+          markers: false,      // Optional: Set to true to visualize scrollTrigger points
+        }
+      }
+    );
   }, []);
 
 useEffect(() => {
   const delayTime = 0.01;
+
   gsap.set(maskRefs.current, { opacity: 0, y: 100 });
-  gsap.to(maskRefs.current, {
+
+  // Save to variable ✅
+  const enterAnimation = gsap.to(maskRefs.current, {
     y: 0,
     opacity: 1,
     stagger: 0.2,
@@ -57,18 +59,27 @@ useEffect(() => {
     delay: delayTime,
   });
 
-    // --- Parallax text ---
-    gsap.to(maskRefs.current, {
-      yPercent: 20,
-      ease: "none",
-      scrollTrigger: {
-        trigger: headerRef.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: 1,
-      },
-    });
-  }, []);
+  // Save to variable ✅
+  const parallaxAnimation = gsap.to(maskRefs.current, {
+    yPercent: 20,
+    ease: "none",
+    scrollTrigger: {
+      trigger: headerRef.current,
+      start: "top top",
+      end: "bottom top",
+      scrub: 1,
+    },
+  });
+
+  return () => {
+    enterAnimation.kill();
+    if (parallaxAnimation.scrollTrigger) {
+      parallaxAnimation.scrollTrigger.kill();
+    }
+    parallaxAnimation.kill();
+  };
+}, []);
+
 
 const setMaskRef = (el, index) => {
   if (el) maskRefs.current[index] = el;
