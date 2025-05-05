@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { preLoaderAnim } from "../animation";
+import { preLoaderAnim } from "../animation/preLoaderAnim";
 import "./preloader.css";
 import logo from "../assets/logo.svg";
 

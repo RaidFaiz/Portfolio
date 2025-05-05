@@ -63,6 +63,11 @@ body {
     width: inherit;
 }
 
+.social-media, .navbar {
+    position: fixed;
+    z-index: 9999;
+}
+
 .page-container {
     position: relative;
     width: 100%;
@@ -129,6 +134,8 @@ body {
 }
 
 .main {
+    opacity: 0;
+    transform: translateY(30px);
     width: 100%;
     position: relative;
     z-index: 1;
@@ -305,6 +312,10 @@ h1 {
     .profile img {
         width: 315px;
     }
+
+    #about-subtitle {
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 1320px) {
@@ -343,6 +354,10 @@ h1 {
     .profile img {
         width: 265px;
     }
+
+    #about-subtitle {
+        font-size: 0.75rem;
+    }
 }
 
 @media (max-width: 970px) {
@@ -377,5 +392,9 @@ h1 {
 
     .profile img {
         width: 215px;
+    }
+
+    #about-subtitle {
+        font-size: 0.65rem;
     }
 }
